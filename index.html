@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script>
+(function(){
+	angular.module('App',[])
+	.controller('LunchCheckController',lunchcheck);
+    
+    lunchcheck.$inject=['$scope'];
+    function lunchcheck($scope){
+
+        $scope.foodlist=''; 
+        $scope.stylecolor='';
+        $scope.inject=
+        $scope.displaymessage=function(){
+
+
+            if($scope.foodlist.length==0){
+            $scope.message='Please enter data first';
+            $scope.stylecolor='red';
+            }
+            else if($scope.foodlist.split(',').length<=3){
+            $scope.message='Enjoy!';
+            $scope.stylecolor='green';
+            }
+            else{ 
+            $scope.message='Too much!';
+            $scope.stylecolor='green';
+            }
+
+     };
+   }
+})();
+
+
+</script>
+<body>
+
+<div ng-app="App" ng-controller="LunchCheckController">
+ 
+ <input type="text" style="border:1px solid {{stylecolor}}" ng-model="foodlist"/>
+ &nbsp; &nbsp;
+ <button ng-click="displaymessage()">Check If Too Much</button>
+ <p style="color:{{stylecolor}}">{{message}}</p>
+
+</div>
+
+</body>
+</html>
